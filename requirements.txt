@@ -13,3 +13,4 @@ requests
 asyncstdlib
 apscheduler
 pytz
+pytz==2021.1
