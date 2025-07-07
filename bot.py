@@ -8,7 +8,7 @@ from config import TOKEN, disabled_plugins, log_chat, API_ID, API_HASH
 from utils import get_restarted, del_restarted
 
 # تعيين المنطقة الزمنية للبوت
-timezone = pytz.timezone("Asia/Amman")  # استبدل "Asia/Amman" بمنطقتك الزمنية
+timezone = pytz.timezone("Asia/Amman")  # استبدل "Asia/Amman" بالمنطقة الزمنية المناسبة
 current_time = datetime.now(timezone)
 print("Current Time:", current_time)
 
@@ -23,8 +23,9 @@ client = Client("my_unique_session_name", API_ID, API_HASH,
                 parse_mode="html",
                 plugins=dict(root="plugins", exclude=disabled_plugins))
 
-# البدء بالبوت
-with client:
+# البدء بالبوت باستخدام start() بدلاً من with
+try:
+    client.start()
     if __name__ == "__main__":
         wr = get_restarted()
         del_restarted()
@@ -38,3 +39,5 @@ with client:
         except BadRequest:
             logging.warning("Unable to send message to log_chat.")
         idle()
+except Exception as e:
+    logging.error(f"Error while starting bot: {e}")
