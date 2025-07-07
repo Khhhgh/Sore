@@ -18,8 +18,12 @@ if wr is None:
         fileSize = os.path.getsize("info.json")
         if fileSize == 0:
             
-            tokenBot = '7547739104:AAHkVp4JZ6Sr3PMEPWvfY-XrJ7-mtEFLEUw' 
-            
+            # قراءة Token من متغير البيئة في Heroku
+            tokenBot = os.getenv('tokenBot')  # استخدام المتغير البيئي
+            if tokenBot is None:
+                print("Error: tokenBot is not set in Heroku config vars.")
+                exit()  # إنهاء البرنامج إذا لم يكن المتغير موجود
+
             idSudo = 8011996271
 
             aDict = {"Token": tokenBot, "idSudo": int(idSudo)}
@@ -29,8 +33,12 @@ if wr is None:
             jsonFile.close()
     else:
         
-        tokenBot = '7547739104:AAHkVp4JZ6Sr3PMEPWvfY-XrJ7-mtEFLEUw'
-        
+        # قراءة Token من متغير البيئة في Heroku
+        tokenBot = os.getenv('tokenBot')  # استخدام المتغير البيئي
+        if tokenBot is None:
+            print("Error: tokenBot is not set in Heroku config vars.")
+            exit()  # إنهاء البرنامج إذا لم يكن المتغير موجود
+
         idSudo = 8011996271
 
         aDict = {"Token": tokenBot, "idSudo": int(idSudo)}
@@ -42,8 +50,6 @@ if wr is None:
 ####################################################################################
 
 # Bot token from Bot Father
-
-# TOKEN = "5664558596:6185311761:AAF1960-FhRxYpmU_qYvADz_AlQy5zI93hU"
 f = open('info.json', )
 data = json.load(f)
 TOKEN = data['Token']
@@ -75,7 +81,7 @@ def dev():
             t = row[0]
             developer.append(t)
     if lang2 is None:
-        print("No Second Devoloper")
+        print("No Second Developer")
     else:
         for row in lang2:
             t = row[0]
@@ -94,7 +100,6 @@ def get_bot_information():
 
 
 #####################################################################################
-
 
 # Prefixes for commands, e.g: /command and !command
 prefix = ["/", "!"]
