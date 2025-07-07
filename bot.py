@@ -1,5 +1,4 @@
 import logging
-
 from pyrogram import Client, idle
 from pyrogram.errors.exceptions.bad_request_400 import BadRequest
 
@@ -9,16 +8,16 @@ from utils import get_restarted, del_restarted
 with open("version.txt") as f:
     version = f.read().strip()
 
-
-client = Client("leomedo", API_ID, API_HASH,
+# استخدام اسم جلسة فريد
+client = Client("my_unique_session_name", API_ID, API_HASH,
                 bot_token=TOKEN,
                 workers=24,
                 parse_mode="html",
                 plugins=dict(root="plugins", exclude=disabled_plugins))
 
+# البدء بالبوت
 with client:
     if __name__ == "__main__":
-        # client.me = client.get_me()
         wr = get_restarted()
         del_restarted()
         try:
