@@ -1,10 +1,18 @@
 import logging
+import pytz
+from datetime import datetime
 from pyrogram import Client, idle
 from pyrogram.errors.exceptions.bad_request_400 import BadRequest
 
 from config import TOKEN, disabled_plugins, log_chat, API_ID, API_HASH
 from utils import get_restarted, del_restarted
 
+# تعيين المنطقة الزمنية للبوت
+timezone = pytz.timezone("Asia/Amman")  # استبدل "Asia/Amman" بمنطقتك الزمنية
+current_time = datetime.now(timezone)
+print("Current Time:", current_time)
+
+# قراءة إصدار البوت
 with open("version.txt") as f:
     version = f.read().strip()
 
